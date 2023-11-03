@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"strings"
 
 	migrate "github.com/caseybrown89/sql-migrate"
