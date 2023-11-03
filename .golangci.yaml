@@ -3,7 +3,7 @@ linters-settings:
     disabled-checks:
       - ifElseChain
   goimports:
-    local-prefixes: github.com/rubenv/sql-migrate
+    local-prefixes: github.com/caseybrown89/sql-migrate
   govet:
     enable-all: true
     disable:
