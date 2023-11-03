@@ -12,7 +12,7 @@ import (
 	"github.com/go-gorp/gorp/v3"
 	"gopkg.in/yaml.v2"
 
-	migrate "github.com/rubenv/sql-migrate"
+	migrate "github.com/caseybrown89/sql-migrate"
 
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
