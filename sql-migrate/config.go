@@ -61,7 +61,6 @@ func ReadConfig() (map[string]*Environment, error) {
 }
 
 func GetEnvironment() (*Environment, error) {
-	fmt.Printf("In Get Environment")
 	config, err := ReadConfig()
 	if err != nil {
 		return nil, err
@@ -85,9 +84,7 @@ func GetEnvironment() (*Environment, error) {
 		env.Dir = "migrations"
 	}
 
-	fmt.Printf("About to set table")
 	if env.TableName != "" {
-		fmt.Printf("Setting table name")
 		migrate.SetTable(env.TableName)
 	}
 

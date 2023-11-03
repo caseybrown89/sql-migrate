@@ -44,8 +44,6 @@ func (c *UpCommand) Run(args []string) int {
 	cmdFlags.BoolVar(&dryrun, "dryrun", false, "Don't apply migrations, just print them.")
 	ConfigFlags(cmdFlags)
 
-	fmt.Printf("Running up")
-
 	if err := cmdFlags.Parse(args); err != nil {
 		return 1
 	}
