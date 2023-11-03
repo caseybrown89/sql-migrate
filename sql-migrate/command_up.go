@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"strings"
 
 	migrate "github.com/caseybrown89/sql-migrate"
@@ -42,6 +43,8 @@ func (c *UpCommand) Run(args []string) int {
 	cmdFlags.Int64Var(&version, "version", -1, "Migrate up to a specific version.")
 	cmdFlags.BoolVar(&dryrun, "dryrun", false, "Don't apply migrations, just print them.")
 	ConfigFlags(cmdFlags)
+
+	fmt.Printf("Running up")
 
 	if err := cmdFlags.Parse(args); err != nil {
 		return 1
