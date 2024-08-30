@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"database/sql"
+	"embed"
 	"errors"
 	"fmt"
 	"io"
@@ -110,6 +111,11 @@ func SetSchema(name string) {
 	if name != "" {
 		migSet.SchemaName = name
 	}
+}
+
+// Resets schema to empty
+func ResetSchema() {
+	migSet.SchemaName = ""
 }
 
 // SetDisableCreateTable sets the boolean to disable the creation of the migration table
@@ -349,6 +355,19 @@ func (a AssetMigrationSource) FindMigrations() ([]*Migration, error) {
 	sort.Sort(byId(migrations))
 
 	return migrations, nil
+}
+
+// A set of migrations loaded from an go1.16 embed.FS
+type EmbedFileSystemMigrationSource struct {
+	FileSystem embed.FS
+
+	Root string
+}
+
+var _ MigrationSource = (*EmbedFileSystemMigrationSource)(nil)
+
+func (f EmbedFileSystemMigrationSource) FindMigrations() ([]*Migration, error) {
+	return findMigrations(http.FS(f.FileSystem), f.Root)
 }
 
 // Avoids pulling in the packr library for everyone, mimicks the bits of
